@@ -22,4 +22,4 @@ Route::post('login', 'AuthController@login');
 
 Route::apiResource('tag', 'TagController');
 Route::apiResource('article', 'ArticleController');
-//Route::post('books/{book}/ratings', 'RatingController@store');
+Route::post('article/{article}/photos', 'PhotoController@store');

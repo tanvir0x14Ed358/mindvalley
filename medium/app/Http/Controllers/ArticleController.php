@@ -20,7 +20,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return ArticleResource::collection(Article::with('photos')->paginate(25));
+        return ArticleResource::collection(Article::all()->paginate(25));
     }
 
     /**
