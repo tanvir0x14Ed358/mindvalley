@@ -19,8 +19,12 @@ class CreateArticlesTable extends Migration
             $table->text('details');
             $table->timestamps();
             $table->unsignedInteger('tag_id');
+            $table->unsignedInteger('user_id');
             $table->foreign('tag_id')
                 ->references('id')->on('tags')
+                ->onDelete('cascade');
+            $table->foreign('user_id')
+                ->references('id')->on('users')
                 ->onDelete('cascade');
         });
     }
