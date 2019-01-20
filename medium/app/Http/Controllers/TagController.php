@@ -31,9 +31,12 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
         $tag = Tag::create([
             'name' => $request->name,
-            'details' => $request->details,
         ]);
 
         return new TagResource($tag);
@@ -59,6 +62,10 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
+        $request->validate([
+            'name' => 'required|max:255',
+        ]);
+
         $tag->update($request->only(['name']));
 
         return new TagResource($tag);

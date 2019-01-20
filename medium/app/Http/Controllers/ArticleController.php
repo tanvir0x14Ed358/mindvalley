@@ -6,11 +6,16 @@ use App\Article;
 use App\Http\Resources\ArticleResource;
 use Illuminate\Http\Request;
 
+
+use Illuminate\Support\Facades\Auth;
+
 class ArticleController extends Controller
 {
+    private $userId;
     public function __construct()
     {
-        $this->middleware('auth:api')->except(['index', 'show']);
+
+        $this->middleware('auth:api')->except(['index', 'show', 'store']);
     }
 
     /**
@@ -31,8 +36,14 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|max:255',
+            'details' => 'required',
+            'user_id' => 'required',
+            'tag_id' => 'required',
+        ]);
         $article = Article::create([
-            'user_id' => $request->user()->id,
+            'user_id' => $request->user_id,
             'tag_id' => $request->tag_id,
             'title' => $request->title,
             'details' => $request->details,
@@ -64,6 +75,11 @@ class ArticleController extends Controller
         if ($request->user()->id !== $article->user_id) {
             return response()->json(['error' => 'You can only edit your own article.'], 403);
         }
+
+        $request->validate([
+            'title' => 'required|max:255',
+            'details' => 'required',
+        ]);
 
         $article->update($request->only(['title', 'details', 'tag_id']));
 

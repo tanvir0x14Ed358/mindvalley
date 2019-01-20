@@ -1818,14 +1818,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       list: [],
+      tags: [],
       article: {
-        id: '',
-        title: ''
+        title: '',
+        details: '',
+        tag_id: '',
+        user_id: 1
       }
     };
   },
@@ -1839,12 +1866,16 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/article').then(function (res) {
         _this.list = res.data;
       });
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/tag').then(function (res) {
+        _this.tags = res.data;
+      });
     },
     createTask: function createTask() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/tasks', this.article).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/article', this.article).then(function (res) {
         _this2.article.title = '';
+        _this2.article.details = '';
         _this2.edit = false;
 
         _this2.fetchTaskList();
@@ -37488,7 +37519,145 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: " full-height" }, [
-    _c("div", { staticClass: "content" }, [
+    _c("div", { staticClass: "container" }, [
+      _c(
+        "h3",
+        {
+          staticClass: "text-center",
+          staticStyle: { margin: "20px 0 20px 0" }
+        },
+        [_vm._v("Article Listing")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c(
+          "form",
+          {
+            attrs: { action: "#" },
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                _vm.createTask()
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "tag_id" } }, [_vm._v("Tag:")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.article.tag_id,
+                      expression: "article.tag_id"
+                    }
+                  ],
+                  attrs: { name: "tag_id" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.article,
+                        "tag_id",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                _vm._l(_vm.tags.data, function(item) {
+                  return _c("option", { domProps: { value: item.id } }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(item.name) +
+                        "\n                    "
+                    )
+                  ])
+                }),
+                0
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "title" } }, [_vm._v("Title:")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.article.title,
+                    expression: "article.title"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  name: "title",
+                  required: "",
+                  autofocus: ""
+                },
+                domProps: { value: _vm.article.title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.article, "title", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "details" } }, [_vm._v("Details:")]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.article.details,
+                    expression: "article.details"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { name: "details" },
+                domProps: { value: _vm.article.details },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.article, "details", $event.target.value)
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [_vm._v("Add Article")]
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
       _c(
         "div",
         { staticClass: "col-md-8" },
@@ -37496,30 +37665,34 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _vm._l(_vm.list.data, function(story) {
-            return _c("div", { staticClass: "row " }, [
-              _c("div", { staticClass: "col-md-2 text-center" }, [
-                _vm._v(_vm._s(story.id))
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-8 text-center" }, [
-                _vm._v(_vm._s(story.title))
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-2 " }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-danger btn-xs pull-right",
-                    on: {
-                      click: function($event) {
-                        _vm.deleteTask(story.id)
+            return _c(
+              "div",
+              { staticClass: "row ", staticStyle: { "margin-bottom": "10px" } },
+              [
+                _c("div", { staticClass: "col-md-2 text-center" }, [
+                  _vm._v(_vm._s(story.id))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-8 text-center" }, [
+                  _vm._v(_vm._s(story.title))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-2 " }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger btn-xs pull-right",
+                      on: {
+                        click: function($event) {
+                          _vm.deleteTask(story.id)
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("Delete")]
-                )
-              ])
-            ])
+                    },
+                    [_vm._v("Delete")]
+                  )
+                ])
+              ]
+            )
           })
         ],
         2
