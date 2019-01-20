@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 
 import App from './components/App'
 import Article from './components/Article'
-import Admin from './components/Admin'
+import Tag from './components/Tag'
 
 const router = new VueRouter({
     mode: 'history',
@@ -18,16 +18,11 @@ const router = new VueRouter({
             props: { title: "Article Listing" }
         },
         {
-            path: '/admin',
-            name: 'admin',
-            component: Admin,
+            path: '/tag',
+            name: 'tag',
+            component: Tag,
             props: {
-                title: "Admin page",
-                author : {
-                    name : "Fisayo Afolayan",
-                    role : "Software Engineer",
-                    code : "Always keep it clean"
-                }
+                title: "Tag Listing",
             }
         },
     ],

@@ -22,7 +22,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('article', require('./components/Article.vue'));
-Vue.component('admin', require('./components/Admin.vue'));
+Vue.component('tag', require('./components/Tag.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

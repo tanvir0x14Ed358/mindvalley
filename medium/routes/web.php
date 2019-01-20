@@ -16,9 +16,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/boss', function(){
+Route::get('/admin', function(){
     return view('vueapp');
-});
+})->name('admin')->middleware('auth');
 
 Auth::routes();
 
