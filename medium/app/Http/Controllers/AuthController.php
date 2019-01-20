@@ -15,7 +15,7 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        $token = auth()->login($user);
+        $token = auth('api')->login($user);
 
         return $this->respondWithToken($token);
     }
@@ -24,7 +24,7 @@ class AuthController extends Controller
     {
         $credentials = $request->only(['email', 'password']);
 
-        if (!$token = auth()->attempt($credentials)) {
+        if (!$token = auth('api')->attempt($credentials)) {
             var_dump($credentials);die();
             return response()->json(['error' => 'Unauthorized'], 401);
         }
