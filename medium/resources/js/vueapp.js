@@ -1,27 +1,28 @@
 import Vue from 'vue'
+import axios from 'axios'
 import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
 import App from './components/App'
-import Welcome from './components/Welcome'
-import Page from './components/Page'
+import Article from './components/Article'
+import Admin from './components/Admin'
 
 const router = new VueRouter({
     mode: 'history',
     routes: [
         {
-            path: '/home',
-            name: 'welcome',
-            component: Welcome,
-            props: { title: "This is the SPA home" }
+            path: '/article',
+            name: 'article',
+            component: Article,
+            props: { title: "Article Listing" }
         },
         {
-            path: '/spa-page',
-            name: 'page',
-            component: Page,
+            path: '/admin',
+            name: 'admin',
+            component: Admin,
             props: {
-                title: "This is the SPA Second Page",
+                title: "Admin page",
                 author : {
                     name : "Fisayo Afolayan",
                     role : "Software Engineer",
@@ -35,4 +36,5 @@ const app = new Vue({
     el: '#app',
     components: { App },
     router,
+
 });

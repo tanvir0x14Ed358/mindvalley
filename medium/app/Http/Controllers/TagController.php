@@ -20,7 +20,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        return TagResource::collection(Tag::all()->paginate(25));
+        return TagResource::collection(Tag::all());
     }
 
     /**

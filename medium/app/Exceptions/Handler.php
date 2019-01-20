@@ -4,6 +4,9 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\UnauthorizedException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 
 class Handler extends ExceptionHandler
 {
@@ -50,6 +53,12 @@ class Handler extends ExceptionHandler
             return response()->json([
                 'error' => 'Resource not found'
             ], 404);
+        }
+
+        if ($exception instanceof MethodNotAllowedHttpException ) {
+            return response()->json([
+                'error' => 'Not authorized'
+            ], 401);
         }
 
         return parent::render($request, $exception);

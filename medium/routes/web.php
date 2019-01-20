@@ -16,9 +16,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/medium', function () {
-    return view('home');
+Route::get('/boss', function(){
+    return view('vueapp');
 });
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
