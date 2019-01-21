@@ -14,7 +14,7 @@ class ArticleController extends Controller
     private $userId;
     public function __construct()
     {
-        $this->middleware('auth:api')->except(['index', 'show', 'store', 'destroy']);
+        $this->middleware('auth:api')->except(['index', 'show', 'store', 'destroy','update']);
     }
 
     /**
@@ -72,16 +72,12 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        if ($request->user()->id !== $article->user_id) {
-            return response()->json(['error' => 'You can only edit your own article.'], 403);
-        }
-
         $request->validate([
             'title' => 'required|max:255',
             'details' => 'required',
         ]);
 
-        $article->update($request->only(['title', 'details', 'tag_id']));
+        $article->update($request->only(['title', 'details']));
 
         return new ArticleResource($article);
     }
