@@ -79,3 +79,21 @@ medium/tests/Unit
 ArticleControllerTest.php     
 AuthControllerTest.php   
 
+#API Endpoints     
+
+|        | GET|HEAD  | api/article                  | article.index    | App\Http\Controllers\ArticleController@index      
+|        | POST      | api/article                  | article.store    | App\Http\Controllers\ArticleController@store      
+|        | GET|HEAD  | api/article/{article}        | article.show     | App\Http\Controllers\ArticleController@show       
+|        | PUT|PATCH | api/article/{article}        | article.update   | App\Http\Controllers\ArticleController@update       
+|        | DELETE    | api/article/{article}        | article.destroy  | App\Http\Controllers\ArticleController@destroy       
+|        | POST      | api/article/{article}/photos |                  | App\Http\Controllers\PhotoController@store         
+
+|        | POST      | api/login                    |                  | App\Http\Controllers\AuthController@login           
+|        | POST      | api/register                 |                  | App\Http\Controllers\AuthController@register         
+
+|        | GET|HEAD  | api/tag                      | tag.index        | App\Http\Controllers\TagController@index          
+|        | POST      | api/tag                      | tag.store        | App\Http\Controllers\TagController@store                
+|        | GET|HEAD  | api/tag/{tag}                | tag.show         | App\Http\Controllers\TagController@show                       
+|        | PUT|PATCH | api/tag/{tag}                | tag.update       | App\Http\Controllers\TagController@update                           
+|        | DELETE    | api/tag/{tag}                | tag.destroy      | App\Http\Controllers\TagController@destroy                                
+
