@@ -14,7 +14,6 @@ class ArticleController extends Controller
     private $userId;
     public function __construct()
     {
-
         $this->middleware('auth:api')->except(['index', 'show', 'store']);
     }
 
@@ -36,6 +35,7 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'title' => 'required|max:255',
             'details' => 'required',

@@ -11,13 +11,12 @@
 |
 */
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController@index')->name('front');
+Route::get('/tag/{id}', 'WelcomeController@tag')->name('tag');
+Route::get('/article/{id}', 'WelcomeController@article')->name('article');
 
 Route::get('/admin', function(){
-    return view('vueapp');
+    return view('vueadmin');
 })->name('admin')->middleware('auth');
 
 Auth::routes();
