@@ -10,7 +10,7 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item " >
-                        <a class="nav-link" href="/home">Home</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
                 </ul>
             </div>

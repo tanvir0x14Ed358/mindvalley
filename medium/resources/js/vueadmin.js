@@ -12,6 +12,10 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {
+            path: '/admin',
+            redirect: '/article'
+        },
+        {
             path: '/article',
             name: 'article',
             component: Article,

@@ -19,16 +19,16 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row text-center">
     <div class="col-md-12" style="text-transform: uppercase;">
-        <div style="float: left;margin-right: 10px;">
+        <span style="margin-right: 10px;">
             <strong><a href="{{route('front')}}">HOME</a></strong>
-        </div>
+        </span>
 
     @foreach ($tags as $tag)
-            <div style="float: left;margin-right: 15px;">
+            <span style="margin-right: 15px;">
                 <strong>{{ $tag->name }}</strong>
-            </div>
+            </span>
         @endforeach
     </div>
     </div>

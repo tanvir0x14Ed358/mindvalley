@@ -2570,7 +2570,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "navbar-nav" }, [
       _c("li", { staticClass: "nav-item " }, [
-        _c("a", { staticClass: "nav-link", attrs: { href: "/home" } }, [
+        _c("a", { staticClass: "nav-link", attrs: { href: "/" } }, [
           _vm._v("Home")
         ])
       ])
@@ -17030,6 +17030,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   mode: 'history',
   routes: [{
+    path: '/admin',
+    redirect: '/article'
+  }, {
     path: '/article',
     name: 'article',
     component: _components_Article__WEBPACK_IMPORTED_MODULE_4__["default"],
