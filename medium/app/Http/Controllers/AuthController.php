@@ -9,6 +9,12 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
+        $credentials = $request->only(['email', 'password']);
+        if(!isset($credentials['email']) || !isset($credentials['password'])){
+            return response()->json(['email' => 'The email field is required.',
+                'password' => 'The password field is required.'], 422);
+        }
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -23,9 +29,13 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only(['email', 'password']);
+        if(!isset($credentials['email']) || !isset($credentials['password'])){
+            return response()->json(['email' => 'The email field is required.',
+                'password' => 'The password field is required.'], 422);
+        }
 
         if (!$token = auth('api')->attempt($credentials)) {
-            var_dump($credentials);die();
+
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 

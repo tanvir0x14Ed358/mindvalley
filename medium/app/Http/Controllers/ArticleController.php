@@ -14,7 +14,7 @@ class ArticleController extends Controller
     private $userId;
     public function __construct()
     {
-        $this->middleware('auth:api')->except(['index', 'show', 'store', destroy]);
+        $this->middleware('auth:api')->except(['index', 'show', 'store', 'destroy']);
     }
 
     /**
